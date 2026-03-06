@@ -17,7 +17,9 @@
 
             <p class="perk-reminder">{{ cmsData?.PerkReminder }}</p>
             <div class="register">
-                <button matButton>
+                <button 
+                matButton
+                (click)="openForm()">
                     <div class="register-label">
                         <p>{{ cmsData?.PerkRegisterNowLabel }}</p>
                         <p><mat-icon>arrow_forward</mat-icon></p>

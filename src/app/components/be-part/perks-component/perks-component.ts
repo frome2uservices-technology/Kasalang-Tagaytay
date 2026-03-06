@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { LoaderComponent } from '../../shared/loader-component/loader-component';
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterFormComponent } from '../../account/register-form-component/register-form-component';
 
 @Component({
   selector: 'app-perks-component',
@@ -28,7 +30,8 @@ export class PerksComponent implements OnInit, OnDestroy {
   private switchInterval: number = 0;
 
   constructor(
-    private readonly cmsService: CmsService
+    private readonly cmsService: CmsService,
+    private readonly dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -86,5 +89,15 @@ export class PerksComponent implements OnInit, OnDestroy {
         this.currentImageIndex = (this.currentImageIndex + 1) % this.perksFeaturedImages.length;
       }, 5000);
     }
+  }
+
+  public openForm(): void {
+    this.dialog.open(RegisterFormComponent, {
+      width: '800px',
+      height: '90%',
+      data: {
+        registrarionUrl: this.cmsData?.PerkRegistrationLink ?? ''
+      }
+    });
   }
 }
