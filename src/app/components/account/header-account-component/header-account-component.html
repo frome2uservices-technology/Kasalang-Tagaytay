@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div 
+        class="register"
+        (click)="openForm()">
+            <mat-icon>library_add</mat-icon>
+            {{ cmsData?.HeaderRegisterNowLabel }}
+        </div>
+
+        <div class="booking-look-up">
+            <button matButton="outlined">
+                <mat-icon>search</mat-icon>
+                {{ cmsData?.HeaderMyReservationLabel }}
+            </button>
+        </div>
+    </div>
+</div>

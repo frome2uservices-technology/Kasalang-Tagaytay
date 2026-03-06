@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="faq">
+        <div class="first-row">
+            <div class="header">
+                <p class="title">{{ cmsData?.FaqTitle }}</p>
+                <p class="subtitle">{{ cmsData?.FaqSubtitle }}</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="others">
+                <p class="contact-us">{{ cmsData?.FaqAskPersonalQuestionText }}</p>
+                <div class="contact-detail">
+                    <img src="assets/email.png" alt="Email">
+                    <p class="email">{{ cmsData?.FaqEmailAddress }}</p>
+                </div>
+                <div class="contact-detail">
+                    <img src="assets/phone.png" alt="Phone">
+                    <p class="phone">{{ cmsData?.FaqPhoneNumber }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="questions">
+            <mat-accordion multi>
+                <mat-expansion-panel 
+                *ngFor="let question of frequentlyAskedQuestions; let i =index"
+                [expanded]="step() === i"
+                (opened)="setStep(i)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> {{ question?.question }} </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <ng-container 
+                        [ngTemplateOutlet]="answer"
+                        [ngTemplateOutletContext]="{question: question}">
+                    </ng-container>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+
+    <app-loader-component *ngIf="isLoading"></app-loader-component>
+</div>
+
+<ng-template #answer let-question="question">
+    <div class="content">
+        <p class="description" [innerHTML]="question?.description"></p>
+
+        <ul class="answers">
+            <li *ngFor="let answer of question?.answers" [innerHTML]="answer"></li>
+        </ul>
+    </div> 
+</ng-template>

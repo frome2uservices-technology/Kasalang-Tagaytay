@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="experience">
+        <div class="experience-text">
+            <div class="title">
+                {{ cmsData?.ExperienceTitle }}
+            </div>
+
+            <div class="sub-title">
+                {{ cmsData?.ExperienceSubtitle }}
+            </div>
+            <div class="divider"></div>
+
+            <div class="description">
+                <p [innerHTML]="cmsData?.ExperienceDescription"></p>
+
+                
+                <p *ngIf="shouldShowSupplierOffer" 
+                class="supplier"
+                (click)="navigateSupplierPage()">
+                    {{ cmsData?.ExperienceBookSupplierLabel }}
+                </p>
+            </div>
+        </div>
+
+        <div class="experience-image">
+            <img src="https://kasalangtagaytay.com/wordpress/wp-content/uploads/2024/11/662b362a9e2202ff3059a9a4_img3.png" alt="">
+        </div>
+    </div>
+
+    <app-loader-component *ngIf="isLoading"></app-loader-component>
+</div>

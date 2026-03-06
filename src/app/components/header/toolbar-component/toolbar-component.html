@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row upper">
+        <div class="logo" (click)="navigateHomePage()">
+            <img src="assets/kt-logo-square.png" alt="">
+        </div>
+
+        <div class="account">
+            <app-header-account-component [cmsData]="cmsData"></app-header-account-component>
+        </div>
+    </div>
+
+    <div class="row lower">
+        <div class="navigation">
+            <app-navigation-component 
+                [cmsData]="cmsData"
+                [countdownNotice]="countdownNotice">
+            </app-navigation-component>
+        </div>
+
+        <div class="countdown">
+            {{ countdownNotice }}
+        </div>
+    </div>
+    
+    <app-loader-component *ngIf="isLoading"></app-loader-component>
+</div>

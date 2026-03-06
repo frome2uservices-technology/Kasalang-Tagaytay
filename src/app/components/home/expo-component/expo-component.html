@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="expo">
+        <mat-card class="expo-card">
+            <mat-card-header class="header">
+                <mat-card-title> {{ cmsData?.ExpoSubtitle1 }} </mat-card-title>
+                <mat-card-title>{{ cmsData?.ExpoSubtitle2 }}</mat-card-title>
+                <mat-card-subtitle>{{ cmsData?.ExpoTitle }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="details">
+                            <p>{{ cmsData?.ExpoEventDateStart }} – {{ cmsData?.ExpoEventDateEnd }}</p>
+                            <p>{{ cmsData?.ExpoEventDateStartTime }} to {{ cmsData?.ExpoEventDateEndTime }}</p>
+                            <p>{{ cmsData?.ExpoLocation }}</p>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div 
+                        class="register"
+                        (click)="openForm()">
+                            <mat-icon>library_add</mat-icon>
+                            {{ cmsData?.ExpoRegisterNow }}
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <app-loader-component *ngIf="isLoading"></app-loader-component>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="carousel">
+        <mat-tab-group
+        [(selectedIndex)]="selectedIndex"
+        headerPosition="below">
+            <mat-tab
+            *ngFor="let event of previousEvents"
+            label="{{ event?.eventTitle }}">
+                <div class="event-photo">
+                    <img src="assets/wedding-background.jpg" alt="">
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+    <div class="recap">
+        <div class="title">
+            <p>{{ cmsData?.RecapTitle }}</p>
+        </div>
+
+        <div class="description">
+            <mat-tab-group
+            [(selectedIndex)]="selectedIndex">
+                <mat-tab
+                [disabled]="true"
+                *ngFor="let event of previousEvents">
+                    <p class="description-content">{{ event?.eventDescription }}</p>
+
+                    <div class="supplier">
+                        <button
+                        matButton
+                        (click)="redirectToSupplierPage()">
+                            {{ cmsData?.RecapBrowseSuppliersLabel }}
+                        </button>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+
+    <app-loader-component *ngIf="isLoading"></app-loader-component>
+</div>

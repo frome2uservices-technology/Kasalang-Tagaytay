@@ -1,0 +1,19 @@
+app-toolbar-component {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+}
+
+.page {
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+router-outlet {
+  flex: 5;
+}

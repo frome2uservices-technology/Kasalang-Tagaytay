@@ -1,0 +1,185 @@
+@use 'index' as styles;
+@use '@angular/material' as mat;
+
+.container {
+    display: flex;
+    gap: 10px;
+    
+    .navigation-tab {
+        display: block;
+        position: relative;
+        padding: 10px 13px 8px;
+        transition: width 0.3s ease;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: large;
+        color: #666;
+
+        @include mat.button-overrides((
+            text-state-layer-color: none
+        ));
+    }
+
+    .navigation-tab.active {
+        color: styles.$dark-magenta-color;
+    }
+
+    .navigation-tab:hover {
+        color: styles.$dark-magenta-color;
+    }
+
+    .navigation-tab.active::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 6px;
+        background-color: styles.$dark-magenta-color;
+        border-radius: 4px;
+    }
+
+    .side-nav-container {
+        display: none;
+    }
+}
+
+@media (max-width: 920px) {
+  .container {
+
+    .navigation-tab {
+        display: none;
+    }
+
+    .side-nav-container {
+        display: block;
+        margin-bottom: 10px;
+
+        @include mat.sidenav-overrides((
+            container-background-color: rgb(255, 255, 255)
+        ));
+
+        .side-nav-drawer {
+            box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.178);
+            width: auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            flex: 1;
+
+            .side-nav-drawer-content {
+                display: flex;
+                flex-direction: column;
+                width: auto;
+                
+                height: 100%;
+
+                .close-button {
+                    margin-left: auto;
+                    margin-right: 5px;
+                    
+                    
+                    mat-icon {
+                        color: rgb(129, 129, 129);
+                    }
+                }
+
+                .logo {
+                    margin: 18px auto 0;
+                    img {
+                        width: 260px;
+                        height: auto;
+                    }
+                }
+
+                .side-nav-tab {
+                    margin-top: 50px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+
+                    .side-nav-tab-content {
+
+                        @include mat.button-overrides((
+                            text-label-text-color: rgb(129, 129, 129)
+                        ));
+
+                        font-size: 25px;
+                        font-weight: 500;
+                        margin: 10px 180px 10px 20px;
+
+                        &.active {
+                            color: styles.$dark-magenta-color;
+                        }
+
+                        &.active::after {
+                            content: '';
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;
+                            width: 100%;
+                            height: 6px;
+                            background-color: styles.$dark-magenta-color;
+                            border-radius: 4px;
+                        }
+                    }
+                }
+
+                .divider {
+                    width: auto;
+                    height: 2px;
+                    margin: 30px 20px 0;
+                    border-radius: 10px;
+                    background-color: rgba(0, 0, 0, 0.116);
+                }
+
+                app-header-account-component {
+                    display: none;
+                }
+
+                .countdown {
+                    display: flex;
+                    justify-content: center;
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    margin-bottom: 20px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #666;
+                }
+            }
+
+        }
+
+        .side-nav-trigger {
+            @include mat.fab-overrides((
+                container-color: white,
+                container-shape: 0px,
+                container-elevation-shadow: white
+            ));
+
+            .menu-icon {
+                font-size: 43px;
+                width: 43px;
+                height: 43px;
+            }
+        }
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .container {
+    .side-nav-container {
+        .side-nav-drawer {
+            .side-nav-drawer-content {
+                app-header-account-component {
+                    display: block;
+                }
+            }
+        }
+    }
+  }
+}

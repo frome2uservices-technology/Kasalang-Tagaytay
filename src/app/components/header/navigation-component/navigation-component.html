@@ -1,0 +1,51 @@
+<div class="container">
+    <button 
+    matButton
+    *ngFor="let tab of navigationTabs"
+    class="navigation-tab"
+    [class.active]="tab.tabName === selectedTab"
+    (click)="selectTab(tab)">
+        {{ tab.tabName }}
+    </button>
+
+    <mat-drawer-container class="side-nav-container" autosize>
+        <mat-drawer #drawer class="side-nav-drawer" mode="side">
+            <div class="side-nav-drawer-content">
+                <button class="close-button" matIconButton (click)="drawer.toggle(); showMenu = !showMenu">
+                    <mat-icon>close</mat-icon>
+                </button>
+
+                <div class="logo">
+                    <img src="assets/kt-logo-square.png" alt="">
+                </div>
+                
+                <div class="side-nav-tab">
+                    <button
+                    matButton
+                    *ngFor="let tab of navigationTabs"
+                    class="side-nav-tab-content"
+                    [class.active]="tab.tabName === selectedTab"
+                    (click)="selectTab(tab); drawer.toggle(); showMenu = !showMenu">
+                        {{ tab.tabName }}
+                    </button>
+                </div>
+
+                <div class="divider"></div>
+
+                <app-header-account-component [cmsData]="cmsData"></app-header-account-component>
+
+                <div class="countdown">
+                    {{ countdownNotice }}
+                </div>
+            </div>
+        </mat-drawer>
+
+        <div class="side-nav-trigger">
+            @if (!showMenu) {
+                <button matFab (click)="drawer.toggle(); showMenu = !showMenu">
+                    <mat-icon class="menu-icon">menu</mat-icon>
+                </button>
+            }
+        </div>
+    </mat-drawer-container>
+</div>

@@ -1,0 +1,126 @@
+.container {
+    width: 100%;
+    background-color: rgba(141, 4, 141, 0.041);
+    height: auto;
+    margin-top: 100px;
+
+    .row {
+        padding: 18px 0 15px;
+        display: flex;
+
+        .first {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            .socials {
+                margin: 0 90px 0;
+
+                .social-label{
+                    text-align: center;
+                    margin-bottom: 16px;
+                    font-size: 18px;
+                    letter-spacing: 1px;
+                    font-weight: 500;
+                    color: #0000009f;
+                }
+                
+                .social-logo {
+                    img {
+                    
+                    width: 23px;
+                    height: 23px;
+                    border-radius: 5px;
+                    margin: 0 20px 0;
+                }
+                }
+            }
+
+            .contacts {
+                margin: 0 30px 0;
+
+                .contacts-label {
+                    text-align: center;
+                    margin-bottom: 16px;
+                    font-size: 18px;
+                    letter-spacing: 1px;
+                    font-weight: 500;
+                    color: #0000009f;
+                }
+
+                .contacts-content {
+                    .content {
+                        display: flex;
+                        gap: 10px;
+                        margin-bottom: 8px;
+
+                        img {
+                            width: 20px;
+                            height: 20px;
+                        }
+
+                        p {
+                            margin-top: auto;
+                            margin-bottom: auto;
+                        }
+                    }
+                }
+            }
+
+            .copy-right{
+                margin: 0 30px 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                height: 100%;
+                img {
+                    margin: auto;
+                    width: 200px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+
+        .row {
+            .first {
+                display: inline;
+                .socials {
+                    .social-logo {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                .contacts {
+                    margin-top: 60px;
+                    .contacts-content {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        .content {
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                    }
+                }
+
+                .copy-right{
+                    text-align: center;
+                    margin-top: 50px;
+                    height: auto;
+
+                    img {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

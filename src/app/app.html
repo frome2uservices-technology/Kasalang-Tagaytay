@@ -1,0 +1,9 @@
+@if (!shouldShowMaintenancePage) {
+    <div [@routeFadeAnimation]="prepareRoute(outlet)">
+        <app-toolbar-component></app-toolbar-component>
+        <div class="page">
+            <router-outlet #outlet="outlet"></router-outlet>
+        </div>
+        <app-footer-component></app-footer-component>
+    </div>
+}

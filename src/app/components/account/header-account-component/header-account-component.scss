@@ -1,0 +1,57 @@
+@use '@angular/material' as mat;
+@use 'index' as styles;
+
+.container {
+    margin-top: 20px;
+    .row {
+        display: flex;
+        gap: 30px;
+
+        .register {
+            margin-top: auto;
+            margin-bottom: auto;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.9px;
+            cursor: pointer;
+            color: #414141;
+            text-transform: uppercase;
+        }
+
+        .register:hover {
+            font-weight: 600;
+            color: styles.$dark-magenta-color;
+        }
+
+        .booking-look-up {
+            @include mat.button-overrides((
+                outlined-outline-color: styles.$primary-color,
+                outlined-outline-width: 3px,
+                outlined-label-text-size: 15px
+            ));
+
+            text-transform: uppercase;
+        }
+    }
+}
+
+@media (max-width: 860px) {
+    .container {
+        margin-top: 40px;
+        .row {
+            width: 100%;
+            flex-direction: column;
+            gap: 25px;
+
+            .register {
+                order: 2;
+                margin: 0 auto 0;
+            }
+
+            .booking-look-up {
+                order: 1;
+                margin: 0 auto 0;
+            }
+        }
+    }
+}
