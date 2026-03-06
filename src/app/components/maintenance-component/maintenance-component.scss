@@ -1,0 +1,35 @@
+.container {
+
+    .maintenance {
+        width: 100%;
+        padding-top: 200px;
+        display: flex;
+        flex-direction: column;
+
+        .maintenance-image {
+            margin: 0 auto 0;
+
+            img {
+                width: 300px;
+                height: auto;
+            }
+        }
+
+        .maintenance-description {
+            margin: 0 60px 0;
+            text-align: center;
+            color: #666;
+
+            .title {
+                font-size: 25px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-weight: 600;
+            }
+
+            .subtitle {
+                font-size: large;
+            }
+        }
+    }
+}

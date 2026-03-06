@@ -5,13 +5,15 @@ import { FooterComponent } from './components/footer/footer-component/footer-com
 import { RouteFadeAnimation } from './animations/route-animation';
 import { AppConfigService } from './core/config.service';
 import { CommonModule } from '@angular/common';
+import { MaintenanceComponent } from './components/maintenance-component/maintenance-component';
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
     CommonModule,
     ToolbarComponent,
-    FooterComponent
+    FooterComponent,
+    MaintenanceComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
