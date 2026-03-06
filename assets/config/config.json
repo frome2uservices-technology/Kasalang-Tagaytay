@@ -8,7 +8,9 @@
             "expoComponent": "/api/kt-web-expo",
             "experienceComponent": "/api/kt-web-experience",
             "recapComponent": "/api/kt-web-recap",
-            "faqComponent": "/api/kt-web-faq"
+            "faqComponent": "/api/kt-web-faq",
+            "perksComponent": "/api/kt-web-perk",
+            "raffleComponent": "/api/kt-web-raffle"
         }
     }
 }
