@@ -9,6 +9,7 @@ export interface CmsHeaderComponentsData {
     HeaderMyReservationLabel: string;
     HeaderEventExpoDate: string;
     HeaderNavigationTabs: NavTabs;
+    HeaderRegistrarionLink: string;
 }
 
 interface NavTabs {

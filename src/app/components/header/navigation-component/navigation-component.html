@@ -3,9 +3,9 @@
     matButton
     *ngFor="let tab of navigationTabs"
     class="navigation-tab"
-    [class.active]="tab.tabName === selectedTab"
+    [class.active]="tab?.tabName === selectedTab"
     (click)="selectTab(tab)">
-        {{ tab.tabName }}
+        {{ tab?.tabName }}
     </button>
 
     <mat-drawer-container class="side-nav-container" autosize>
@@ -24,9 +24,9 @@
                     matButton
                     *ngFor="let tab of navigationTabs"
                     class="side-nav-tab-content"
-                    [class.active]="tab.tabName === selectedTab"
+                    [class.active]="tab?.tabName === selectedTab"
                     (click)="selectTab(tab); drawer.toggle(); showMenu = !showMenu">
-                        {{ tab.tabName }}
+                        {{ tab?.tabName }}
                     </button>
                 </div>
 
@@ -35,7 +35,7 @@
                 <app-header-account-component [cmsData]="cmsData"></app-header-account-component>
 
                 <div class="countdown">
-                    {{ countdownNotice }}
+                    Countdown Until Expo<br>{{ countdownNotice }}
                 </div>
             </div>
         </mat-drawer>

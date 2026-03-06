@@ -31,24 +31,40 @@ export class ExperienceComponent implements OnInit {
     this.initializeCmsData();
   }
 
+  /**
+   * The function `initializeCmsData` sets the `cmsData` property by fetching data from a CMS service
+   * if it is not already initialized.
+   */
   private initializeCmsData(): void {
-    this.isLoading = true;
-    this.cmsService
-      .getCmsExperienceComponents()
-      .pipe(take(1))
-      .subscribe(response => {
-        if (response) {
-          this.isLoading = false;
-          this.cmsData = response.data;
-        }
-      });
+    this.cmsData = this.cmsService.experienceCms()?.data ?? null;
+    if (this.cmsData === null) {
+      this.isLoading = true;
+      this.cmsService
+        .getCmsExperienceComponents()
+        .pipe(take(1))
+        .subscribe(response => {
+          if (response) {
+            this.isLoading = false;
+            this.cmsService.experienceCms.set(response);
+            this.cmsData = response.data;
+          }
+        });
+    }
   }
 
+  /**
+   * The function `showSupplierOffer` sets a boolean flag based on the current path in a TypeScript
+   * class.
+   */
   private showSupplierOffer(): void {
     const path = globalThis.location.pathname;
     this.shouldShowSupplierOffer = path.includes('/about-expo');
   }
 
+  /**
+   * The function `navigateSupplierPage` in TypeScript navigates to the suppliers page using the
+   * Angular router.
+   */
   public navigateSupplierPage(): void {
     this.router.navigate(['/suppliers']);
   }

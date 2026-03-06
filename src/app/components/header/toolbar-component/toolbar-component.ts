@@ -34,6 +34,10 @@ export class ToolbarComponent implements OnInit {
     this.initializeCmsData();
   }
 
+  /**
+   * The function `initializeCmsData` initializes CMS data by fetching header components and setting
+   * them in the application.
+   */
   private initializeCmsData(): void {
     this.isLoading = true;
     this.cmsService
@@ -42,6 +46,7 @@ export class ToolbarComponent implements OnInit {
     .subscribe(response => {
       if (response) {
         this.isLoading = false;
+        this.cmsService.headerCms.set(response);
         this.cmsData = response.data;
         this.initializeEventCountdown(response.data.HeaderEventExpoDate);
       }
@@ -68,7 +73,7 @@ export class ToolbarComponent implements OnInit {
       const remainingMinutes: string = Math.floor((timeDifference / (1000 * 60)) % 60).toString().padStart(2, '0');
       const remainingSeconds: string = Math.floor((timeDifference / 1000) % 60).toString().padStart(2, '0');
 
-      this.countdownNotice = `Days: ${remainingDays} | Hours:${remainingHours} Minutes:${remainingMinutes} Seconds:${remainingSeconds}`;
+      this.countdownNotice = `Days: ${remainingDays} | Hours:${remainingHours} | Minutes:${remainingMinutes} | Seconds:${remainingSeconds}`;
     }, 1000);
   }
 
