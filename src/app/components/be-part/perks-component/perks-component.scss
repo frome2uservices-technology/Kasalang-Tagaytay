@@ -1,0 +1,140 @@
+@use '@angular/material' as mat;
+
+.container {
+    position: relative;
+    
+    .perks {
+        display: flex;
+        margin: 0 10% 0;
+
+        .perks-info {
+            width: 100%;
+            margin-right: 10%;
+
+            .info-header {
+
+                .title {
+                    font-size: large;
+                    letter-spacing: 8px;
+                    font-weight: 500;
+                    color: rgba(80, 80, 80, 0.7450980392);
+                    text-transform: uppercase;
+                }
+
+                .subtitle {
+                    font-size: 50px;
+                    letter-spacing: 2px;
+                    margin-top: 43px;
+                    font-family: "Times New Roman", Times, serif;
+                    line-height: 60px;
+                }
+            }
+
+            .divider {
+                width: 230px;
+                height: 2px;
+                background-color: black;
+                margin-bottom: 110px;
+            }
+
+            .perks-list {
+                margin-top: 30px;
+
+                .perk {
+                    display: flex;
+
+                    img {
+                        height: 42px;
+                        width: 42px;
+                    }
+
+                    p {
+                        font-size: 27px;
+                        letter-spacing: 1.5px;
+                        margin-top: auto;
+                        margin-bottom: auto;
+                        margin-left: 20px;
+                        font-family: 'Times New Roman', Times, serif;
+                        line-height: 40px;
+                    }
+                }
+            }
+
+            .perk-reminder {
+                margin-top: 90px;
+                font-size: 20px;
+                font-family: 'Times New Roman', Times, serif;
+                line-height: 37px;
+            }
+
+            .register {
+                display: flex;
+                justify-content: end;
+
+                @include mat.button-overrides((
+                    text-state-layer-color: none,
+                    text-label-text-size: 20px
+                ));
+
+                .register-label {
+                    display: flex;
+                    gap: 10px;
+
+                    p {
+                        margin-top: auto;
+                        margin-bottom: auto;
+                    }
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        .perks-images{
+            margin-top: 70px;
+            position: relative;
+            height: 750px;
+            width: 100%;
+
+            img {
+                border-radius: 20px;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                display: block;
+                object-fit: cover;
+                object-position: center;
+                opacity: 0;
+                transform: scale(0.97);
+                transition: opacity 2s ease-in-out, transform 3s linear;
+
+                &.active{
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 1100px) {
+    .container {
+
+        .perks {
+            flex-direction: column;
+
+            .perks-info {
+                order: 2;
+            }
+
+            .perks-images {
+                order: 1;
+                height: 400px;
+                margin-top: 10px;
+            }
+        }
+    }
+}

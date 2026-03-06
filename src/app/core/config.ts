@@ -15,4 +15,5 @@ interface CmsComponentURLConfig {
     experienceComponent: string;
     recapComponent: string;
     faqComponent: string;
+    perksComponent: string;
 }

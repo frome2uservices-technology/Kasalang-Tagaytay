@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { MaintenanceComponent } from '../../maintenance-component/maintenance-component';
+import { PerksComponent } from '../perks-component/perks-component';
 
 @Component({
   selector: 'app-be-part-component',
   imports: [
-    MaintenanceComponent
+    PerksComponent
   ],
   templateUrl: './be-part-component.html',
   styleUrl: './be-part-component.scss',

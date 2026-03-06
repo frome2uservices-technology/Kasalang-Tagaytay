@@ -7,6 +7,7 @@ import { CmsExpoComponents } from '../models/home/cms-expo-components.model';
 import { CmsExperienceComponents } from '../models/about/cms-experience-component.model';
 import { CmsRecapComponents } from '../models/home/cms-recap-components.model';
 import { CmsFaqComponents } from '../models/faq/cms-faq-component.model';
+import { CmsPerksComponents } from '../models/be-part/cms-perks-component.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class CmsService {
   private readonly cmsExperienceComponentURL: string = '';
   private readonly cmsRecapComponentURL: string = '';
   private readonly cmsFaqComponentURL: string = '';
+  private readonly cmsPerksComponentURL: string = '';
 
   // SIGNALS
   public headerCms: WritableSignal<CmsHeaderComponents | null> = signal<CmsHeaderComponents | null>(null);
@@ -27,6 +29,7 @@ export class CmsService {
   public experienceCms: WritableSignal<CmsExperienceComponents | null> = signal<CmsExperienceComponents | null>(null);
   public recapCms: WritableSignal<CmsRecapComponents | null> = signal<CmsRecapComponents | null>(null);
   public faqCms: WritableSignal<CmsFaqComponents | null> = signal<CmsFaqComponents | null>(null);
+  public perksComponent: WritableSignal<CmsPerksComponents | null> = signal<CmsPerksComponents | null>(null);
 
   constructor(
     private readonly config: AppConfigService,
@@ -38,6 +41,7 @@ export class CmsService {
     this.cmsExperienceComponentURL = `${this.cmsBaseURL}${this.config.cmsServiceConfig.componentURL.experienceComponent}`;
     this.cmsRecapComponentURL = `${this.cmsBaseURL}${this.config.cmsServiceConfig.componentURL.recapComponent}`;
     this.cmsFaqComponentURL = `${this.cmsBaseURL}${this.config.cmsServiceConfig.componentURL.faqComponent}`;
+    this.cmsPerksComponentURL = `${this.cmsBaseURL}${this.config.cmsServiceConfig.componentURL.perksComponent}`;
   }
   
   public getCmsHeaderComponents(): Observable<CmsHeaderComponents> {
@@ -58,5 +62,9 @@ export class CmsService {
 
   public getCmsFaqComponents(): Observable<CmsFaqComponents> {
     return this.http.get<CmsFaqComponents>(`${this.cmsFaqComponentURL}`);
+  }
+
+  public getCmsPerksComponents(): Observable<CmsPerksComponents> {
+    return this.http.get<CmsPerksComponents>(`${this.cmsPerksComponentURL}`);
   }
 }
