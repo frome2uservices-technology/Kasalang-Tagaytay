@@ -7,4 +7,5 @@ export interface CmsExperienceComponentsData {
     ExperienceSubtitle: string;
     ExperienceDescription: string;
     ExperienceBookSupplierLabel: string;
+    ExperienceFeaturedImage: string;
 }

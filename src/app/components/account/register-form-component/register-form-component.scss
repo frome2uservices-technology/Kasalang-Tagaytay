@@ -1,17 +1,23 @@
 @use '@angular/material' as mat;
 
-.dialog-header {
-    position: absolute;
-    right: 0;
-    margin-right: 20px;
-    margin-top: 20px;
-    justify-content: end;
-    
-     @include mat.button-overrides((
-        outlined-outline-color: red,
-        outlined-state-layer-color: red,
-        outlined-label-text-color: red,
-        outlined-outline-width: 3px,
-        outlined-label-text-size: 15px
-    ));
+.container {
+    display: flex;
+    position: relative;
+    height: 100%;
+
+    .dialog-header {
+        position: absolute;
+        right: 0;
+        margin-right: 20px;
+        margin-top: 20px;
+        justify-content: end;
+        
+        @include mat.button-overrides((
+            outlined-outline-color: red,
+            outlined-state-layer-color: red,
+            outlined-label-text-color: red,
+            outlined-outline-width: 3px,
+            outlined-label-text-size: 15px
+        ));
+    }
 }

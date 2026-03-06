@@ -22,7 +22,7 @@
                 height: 100%;
                 object-fit: cover;
                 display: block;
-                object-position: 0 10px;
+                object-position: center;
             }
         }
     }
@@ -89,6 +89,10 @@
         .carousel {
             width: 100%;
             order: 2;
+
+            .event-photo {
+                height: 300px;
+            }
         }
 
         .recap {

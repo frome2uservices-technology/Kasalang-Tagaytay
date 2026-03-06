@@ -4,13 +4,17 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoaderComponent } from '../../shared/loader-component/loader-component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register-form-component',
   imports: [
+    CommonModule,
     MatIconModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    LoaderComponent
   ],
   templateUrl: './register-form-component.html',
   styleUrl: './register-form-component.scss',
@@ -41,6 +45,9 @@ export class RegisterFormComponent implements OnInit {
    * The `onLoad` function sets the `isLoading` property to false when the component is loaded.
    */
   public onLoad() {
-    this.isLoading = false;
+    const interval: number = setInterval(() => {
+      this.isLoading = false;
+      clearInterval(interval);
+    }, 1500);
   }
 }
