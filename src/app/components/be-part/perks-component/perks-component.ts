@@ -84,7 +84,7 @@ export class PerksComponent implements OnInit, OnDestroy {
     if (this.perksFeaturedImages.length > 0) {
       this.switchInterval = setInterval(() => {
         this.currentImageIndex = (this.currentImageIndex + 1) % this.perksFeaturedImages.length;
-      }, 6000);
+      }, 5000);
     }
   }
 }

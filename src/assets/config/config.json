@@ -2,7 +2,7 @@
     "appName": "Kasalang Tagaytay",
     "webMaintenance": false,
     "cmsService": {
-        "baseURL": "kasalang-tagaytay-cms-production-b042.up.railway.app",
+        "baseURL": "https://kasalang-tagaytay-cms-production-b042.up.railway.app",
         "componentURL": {
             "headerComponent": "/api/kt-web-header",
             "expoComponent": "/api/kt-web-expo",
