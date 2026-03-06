@@ -1,0 +1,121 @@
+@use 'index' as styles;
+@use '@angular/material' as mat;
+
+.container {
+    position: relative;
+
+    .raffle {
+        margin: 0 10% 0;
+        display: flex;
+        flex-direction: column;
+
+        @include mat.tabs-overrides((
+            active-indicator-height: 0px,
+            divider-height: 0px,
+            pagination-icon-color: white
+        ));
+
+        .header {
+            text-align: center;
+
+            .title {
+                font-size: large;
+                letter-spacing: 8px;
+                font-weight: 500;
+                color: rgba(80, 80, 80, 0.7450980392);
+                text-transform: uppercase;
+            }
+
+            .subtitle {
+                margin: 43px 90px 0;
+                font-size: 37px;
+                letter-spacing: 0.6px;
+                font-family: "Times New Roman", Times, serif;
+                line-height: 60px;
+            }
+        }
+
+        .divider {
+            margin: 20px auto 110px;
+            width: 230px;
+            height: 2px;
+            background-color: black;
+        }
+
+        .reminder {
+            text-align: center;
+
+            .hashtag {
+                color: styles.$dark-magenta-color;
+                font-size: 29px;
+                font-weight: 500;
+                font-family: 'Times New Roman', Times, serif;
+                letter-spacing: 1px;
+            }
+
+            .hastag-description {
+                font-size: 19px;
+                letter-spacing: 0.8px;
+                line-height: 35px;
+                font-family: 'Times New Roman', Times, serif;
+            }
+        }
+    }
+}
+
+.prizes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+    .prize-image {
+        img {
+            border-radius: 20px;
+            height: 420px;
+            width: 490px;
+        }
+    }
+
+    .prize-description {
+        margin: auto 0 auto;
+        font-size: 27px;
+        text-align: center;
+        line-height: 40px;
+        font-family: 'Times New Roman', Times, serif;
+        letter-spacing: 2px;
+        font-weight: 500;
+    }
+}
+
+
+@media (max-width: 1100px) {
+    .container {
+        .raffle {
+            .header {
+                .subtitle {
+                    margin: 0 auto 0;
+                    font-size: 35px;
+                }
+            }
+        }
+    }
+
+    .prizes {
+        flex-direction: column;
+
+        .prize-image {
+            display: flex;
+            justify-content: center;
+            height: 480px;
+            width: 100%;
+
+            img {
+                height: 100%;
+                width: 100%;
+                display: block;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    }
+}

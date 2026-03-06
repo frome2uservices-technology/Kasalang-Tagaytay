@@ -75,7 +75,7 @@ export class RecapComponent implements OnInit, OnDestroy {
   private initializeEventCardInterval(): void {
     this.intervalId = setInterval(() => {
       this.selectedIndex = (this.selectedIndex + 1) % this.previousEvents.length;
-    }, 5000);
+    }, 3000);
   }
 
   /**

@@ -22,7 +22,7 @@
                 height: 100%;
                 object-fit: cover;
                 display: block;
-                object-position: 0 10px;
+                object-position: center;
             }
         }
     }
@@ -48,15 +48,16 @@
             ));
 
             font-family: Georgia, 'Times New Roman', Times, serif;
-            font-size: large;
-            letter-spacing: 1px;
+            font-size: 15px;
+            letter-spacing: 0.8px;
             line-height: 40px;
             color: black;
             display: flex;
 
             .description-content {
-                width: 80%;
+                width: 87%;
                 margin-left: 30px;
+                margin-bottom: 50px;
             }
 
             .supplier {
@@ -89,6 +90,10 @@
         .carousel {
             width: 100%;
             order: 2;
+
+            .event-photo {
+                height: 400px;
+            }
         }
 
         .recap {

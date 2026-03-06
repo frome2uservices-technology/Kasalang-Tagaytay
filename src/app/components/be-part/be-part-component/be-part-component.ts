@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { MaintenanceComponent } from '../../maintenance-component/maintenance-component';
+import { PerksComponent } from '../perks-component/perks-component';
+import { RaffleComponent } from '../raffle-component/raffle-component';
 
 @Component({
   selector: 'app-be-part-component',
   imports: [
-    MaintenanceComponent
+    PerksComponent,
+    RaffleComponent
   ],
   templateUrl: './be-part-component.html',
   styleUrl: './be-part-component.scss',

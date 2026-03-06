@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="perks">
+        <div class="perks-info">
+            <div class="info-header">
+                <p class="title">{{ cmsData?.PerkTitle }}</p>
+                <p class="subtitle">{{ cmsData?.PerkSubtitle }}</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="perks-list" *ngFor="let perk of perks">
+                <div class="perk">
+                    <img [src]="perk?.perkIcon" alt="">
+                    <p>{{ perk?.perkDescription }}</p>
+                </div>
+            </div>
+
+            <p class="perk-reminder">{{ cmsData?.PerkReminder }}</p>
+            <div class="register">
+                <button matButton>
+                    <div class="register-label">
+                        <p>{{ cmsData?.PerkRegisterNowLabel }}</p>
+                        <p><mat-icon>arrow_forward</mat-icon></p>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <div class="perks-images">
+            <img 
+                *ngFor="let featuredImage of perksFeaturedImages; let i = index"
+                [src]="featuredImage"
+                [class.active]="i === currentImageIndex"  
+                alt="">
+        </div>
+    </div>
+
+    <app-loader-component *ngIf="isLoading"></app-loader-component>
+</div>
