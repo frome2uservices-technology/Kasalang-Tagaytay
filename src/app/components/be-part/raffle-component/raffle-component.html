@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="raffle">
+        <div class="header">
+            <p class="title">{{ cmsData?.RaffleTitle }}</p>
+            <p class="subtitle">{{ cmsData?.RaffleSubtitle }}</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <mat-tab-group
+        [(selectedIndex)]="selectedIndex"
+        headerPosition="below">
+            <mat-tab
+            [disabled]="true"
+            *ngFor="let prize of rafflePrizes">
+                <ng-container 
+                    [ngTemplateOutlet]="prizesCarousel"
+                    [ngTemplateOutletContext]="{prize: prize}">
+                </ng-container>
+            </mat-tab>
+        </mat-tab-group>
+
+        <div class="reminder">
+            <p class="hashtag">{{ cmsData?.RaffleHashtag }}</p>
+            <p class="hastag-description">{{ cmsData?.RaffleHashtagDescription }}</p>
+        </div>
+    </div>
+</div>
+
+<ng-template #prizesCarousel let-prize="prize">
+    <div class="prizes">
+        <div class="prize-image">
+            <img [src]="prize?.prizeImageUrl" alt="">
+        </div>
+        <p class="prize-description">{{ prize?.description }}</p>
+    </div>
+</ng-template>

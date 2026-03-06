@@ -8,6 +8,7 @@ import { CmsExperienceComponents } from '../models/about/cms-experience-componen
 import { CmsRecapComponents } from '../models/home/cms-recap-components.model';
 import { CmsFaqComponents } from '../models/faq/cms-faq-component.model';
 import { CmsPerksComponents } from '../models/be-part/cms-perks-component.model';
+import { CmsRaffleComponents } from '../models/be-part/cms-raffle-component.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,7 @@ export class CmsService {
   private readonly cmsRecapComponentURL: string = '';
   private readonly cmsFaqComponentURL: string = '';
   private readonly cmsPerksComponentURL: string = '';
+  private readonly cmsRaffleComponentURL: string = '';
 
   // SIGNALS
   public headerCms: WritableSignal<CmsHeaderComponents | null> = signal<CmsHeaderComponents | null>(null);
@@ -30,6 +32,7 @@ export class CmsService {
   public recapCms: WritableSignal<CmsRecapComponents | null> = signal<CmsRecapComponents | null>(null);
   public faqCms: WritableSignal<CmsFaqComponents | null> = signal<CmsFaqComponents | null>(null);
   public perksComponent: WritableSignal<CmsPerksComponents | null> = signal<CmsPerksComponents | null>(null);
+  public raffleComponent: WritableSignal<CmsRaffleComponents | null> = signal<CmsRaffleComponents | null>(null);
 
   constructor(
     private readonly config: AppConfigService,
@@ -42,6 +45,7 @@ export class CmsService {
     this.cmsRecapComponentURL = `${this.cmsBaseURL}${this.config.cmsServiceConfig.componentURL.recapComponent}`;
     this.cmsFaqComponentURL = `${this.cmsBaseURL}${this.config.cmsServiceConfig.componentURL.faqComponent}`;
     this.cmsPerksComponentURL = `${this.cmsBaseURL}${this.config.cmsServiceConfig.componentURL.perksComponent}`;
+    this.cmsRaffleComponentURL = `${this.cmsBaseURL}${this.config.cmsServiceConfig.componentURL.raffleComponent}`;
   }
   
   public getCmsHeaderComponents(): Observable<CmsHeaderComponents> {
@@ -66,5 +70,9 @@ export class CmsService {
 
   public getCmsPerksComponents(): Observable<CmsPerksComponents> {
     return this.http.get<CmsPerksComponents>(`${this.cmsPerksComponentURL}`);
+  }
+
+  public getCmsRaffleComponents(): Observable<CmsRaffleComponents> {
+    return this.http.get<CmsRaffleComponents>(`${this.cmsRaffleComponentURL}`);
   }
 }

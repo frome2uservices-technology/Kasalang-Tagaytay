@@ -39,6 +39,10 @@ export class PerksComponent implements OnInit, OnDestroy {
     clearInterval(this.switchInterval);
   }
 
+  /**
+   * The function `initializeCmsData` initializes the CMS data for perks components, populates the
+   * perks data, and fetches the data if it is not already available.
+   */
   private intializeCmsData(): void {
     this.cmsData = this.cmsService.perksComponent()?.data ?? null;
     this.populatePerksData(this.cmsData);
@@ -59,12 +63,23 @@ export class PerksComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * The function `populatePerksData` populates perks data and featured images from a CMS data object
+   * and initializes an image switch.
+   * @param {CmsPerksComponentsData | null} cmsData - The `cmsData` parameter is of type
+   * `CmsPerksComponentsData | null`, which means it can either be an object of type
+   * `CmsPerksComponentsData` or `null`.
+   */
   private populatePerksData(cmsData: CmsPerksComponentsData | null): void {
     this.perks = cmsData?.PerkPerkList?.perks ?? [];
     this.perksFeaturedImages = cmsData?.PerkFeaturedImages?.perkFeaturedImages ?? [];
     this.initializeImageSwitch();
   }
 
+  /**
+   * The function `initializeImageSwitch` sets up an interval to switch between featured images at a
+   * specified time interval.
+   */
   private initializeImageSwitch(): void {
     if (this.perksFeaturedImages.length > 0) {
       this.switchInterval = setInterval(() => {

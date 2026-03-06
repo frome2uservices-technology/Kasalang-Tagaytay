@@ -16,4 +16,5 @@ interface CmsComponentURLConfig {
     recapComponent: string;
     faqComponent: string;
     perksComponent: string;
+    raffleComponent: string;
 }
