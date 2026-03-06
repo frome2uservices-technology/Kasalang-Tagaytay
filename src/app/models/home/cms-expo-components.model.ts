@@ -12,4 +12,5 @@ export interface CmsExpoComponentsData {
     ExpoEventDateStartTime: string;
     ExpoEventDateEndTime: string;
     ExpoRegisterNow: string;
+    ExpoRegistrationLink: string;
 }

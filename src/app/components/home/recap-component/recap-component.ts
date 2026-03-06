@@ -37,33 +37,50 @@ export class RecapComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeCmsData();
+    this.initializeEventCardInterval();
   }
 
   ngOnDestroy(): void {
     clearInterval(this.intervalId);
   }
 
+  /**
+   * The `initializeCmsData` function sets the `cmsData` and `previousEvents` properties based on the
+   * data from a CMS service, and fetches the data if it is not already available.
+   */
   private initializeCmsData(): void {
-    this.isLoading = true;
-    this.cmsService
-      .getCmsRecapComponents()
-      .pipe(take(1))
-      .subscribe(response => {
-        if (response) {
-          this.isLoading = false;
-          this.cmsData = response.data;
-          this.previousEvents = response.data.RecapPastEvents.pastEvents;
-          this.initializeEventCardInterval();
-        }
-      })
+    this.cmsData = this.cmsService.recapCms()?.data ?? null;
+    this.previousEvents = this.cmsData?.RecapPastEvents?.pastEvents ?? [];
+    
+    if (this.cmsData === null) {
+      this.isLoading = true;
+      this.cmsService
+        .getCmsRecapComponents()
+        .pipe(take(1))
+        .subscribe(response => {
+          if (response) {
+            this.isLoading = false;
+            this.cmsService.recapCms.set(response);
+            this.cmsData = response.data;
+            this.previousEvents = response.data.RecapPastEvents.pastEvents;
+          }
+        })
+    }
   }
 
+  /**
+   * The function `initializeEventCardInterval` sets up an interval that updates the selected index of
+   * previous events every 5 seconds.
+   */
   private initializeEventCardInterval(): void {
     this.intervalId = setInterval(() => {
       this.selectedIndex = (this.selectedIndex + 1) % this.previousEvents.length;
     }, 5000);
   }
 
+  /**
+   * The function `redirectToSupplierPage` navigates to the suppliers page using the Angular router.
+   */
   public redirectToSupplierPage(): void {
     this.router.navigate(['/suppliers']);
   }

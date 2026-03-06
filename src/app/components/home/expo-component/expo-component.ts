@@ -23,7 +23,7 @@ import { CommonModule } from '@angular/common';
 export class ExpoComponent implements OnInit {
 
   public cmsData: CmsExpoComponentsData | null = null;
-  public isLoading: boolean = true;
+  public isLoading: boolean = false;
   
   constructor (
     private readonly dialog: MatDialog,
@@ -39,13 +39,18 @@ export class ExpoComponent implements OnInit {
    * to the `cmsData` property.
    */
   private initializeCmsData(): void {
-    this.cmsService
-      .getCmsExpoComponents()
-      .pipe(take(1))
-      .subscribe(response => {
-        this.cmsData = response.data;
-        this.isLoading = false;
-      });
+    this.cmsData = this.cmsService.expoCms()?.data ?? null;
+    if (this.cmsData === null) {
+      this.isLoading = true
+      this.cmsService
+        .getCmsExpoComponents()
+        .pipe(take(1))
+        .subscribe(response => {
+          this.isLoading = false;
+          this.cmsData = response.data;
+          this.cmsService.expoCms.set(response);
+        });
+    }
   }
 
   /**
@@ -55,7 +60,10 @@ export class ExpoComponent implements OnInit {
   public openForm(): void {
     this.dialog.open(RegisterFormComponent, {
       width: '800px',
-      height: '90%'
+      height: '90%',
+      data: {
+        registrarionUrl: this.cmsData?.ExpoRegistrationLink ?? ''
+      }
     });
   }
 }

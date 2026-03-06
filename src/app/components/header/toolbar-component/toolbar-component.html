@@ -11,14 +11,16 @@
 
     <div class="row lower">
         <div class="navigation">
-            <app-navigation-component 
-                [cmsData]="cmsData"
-                [countdownNotice]="countdownNotice">
-            </app-navigation-component>
+            @if (cmsData) {
+                <app-navigation-component 
+                    [cmsData]="cmsData"
+                    [countdownNotice]="countdownNotice">
+                </app-navigation-component>
+            }
         </div>
 
         <div class="countdown">
-            {{ countdownNotice }}
+            Countdown Until Expo<br>{{ countdownNotice }}
         </div>
     </div>
     

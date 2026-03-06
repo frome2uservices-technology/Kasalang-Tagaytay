@@ -22,10 +22,18 @@ export class HeaderAccountComponent {
     private readonly dialog: MatDialog
   ) {}
 
+  /**
+   * The `openForm` function opens a dialog window with the `RegisterFormComponent` and passes data
+   * including a registration URL.
+   */
   public openForm(): void {
     this.dialog.open(RegisterFormComponent, {
       width: '800px',
-      height: '90%'
+      height: '90%',
+      data: {
+        registrarionUrl: this.cmsData?.HeaderRegistrarionLink
+
+      }
     });
   }
 }

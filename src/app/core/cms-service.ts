@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { AppConfigService } from './config.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { CmsHeaderComponents } from '../models/header/cms-header-components.model';
 import { CmsExpoComponents } from '../models/home/cms-expo-components.model';
 import { CmsExperienceComponents } from '../models/about/cms-experience-component.model';
@@ -13,12 +13,20 @@ import { CmsFaqComponents } from '../models/faq/cms-faq-component.model';
 })
 export class CmsService {
 
+  // URL
   private readonly cmsBaseURL: string = '';
   private readonly cmsHeaderComponentURL: string = '';
   private readonly cmsExpoComponentURL: string = '';
   private readonly cmsExperienceComponentURL: string = '';
   private readonly cmsRecapComponentURL: string = '';
   private readonly cmsFaqComponentURL: string = '';
+
+  // SIGNALS
+  public headerCms: WritableSignal<CmsHeaderComponents | null> = signal<CmsHeaderComponents | null>(null);
+  public expoCms: WritableSignal<CmsExpoComponents | null> = signal<CmsExpoComponents | null>(null);
+  public experienceCms: WritableSignal<CmsExperienceComponents | null> = signal<CmsExperienceComponents | null>(null);
+  public recapCms: WritableSignal<CmsRecapComponents | null> = signal<CmsRecapComponents | null>(null);
+  public faqCms: WritableSignal<CmsFaqComponents | null> = signal<CmsFaqComponents | null>(null);
 
   constructor(
     private readonly config: AppConfigService,

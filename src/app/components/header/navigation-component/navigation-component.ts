@@ -21,7 +21,7 @@ import { HeaderAccountComponent } from '../../account/header-account-component/h
   templateUrl: './navigation-component.html',
   styleUrl: './navigation-component.scss',
 })
-export class NavigationComponent implements OnDestroy, OnChanges {
+export class NavigationComponent implements OnDestroy, OnInit {
 
   @Input() public cmsData: CmsHeaderComponentsData | null = null;
   @Input() public countdownNotice: string = '';
@@ -37,27 +37,43 @@ export class NavigationComponent implements OnDestroy, OnChanges {
     private readonly router: Router
   ) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.cmsData) {
-      this.navigationTabs = this.cmsData.HeaderNavigationTabs.navigationTabs;
-      this.loadCurrentSelectedTabOnRefresh();
-      this.loadSelectedTab();
-    }
+  ngOnInit(): void {
+    this.navigationTabs = this.cmsData?.HeaderNavigationTabs.navigationTabs ?? [];
+    this.loadCurrentSelectedTabOnRefresh();
+    this.loadSelectedTab();
   }
 
   ngOnDestroy(): void {
     this.pathObserveSubs.unsubscribe();
   }
 
+  /**
+   * The function `selectTab` sets the selected tab and navigates to the corresponding page in a
+   * TypeScript class.
+   * @param {NavigationTab} tab - The `tab` parameter in the `selectTab` function is of type
+   * `NavigationTab`, which likely contains information about a specific tab in a navigation menu or
+   * bar. The function sets the `selectedTab` property to the `tabName` of the provided `NavigationTab`
+   * object and then calls
+   */
   public selectTab(tab: NavigationTab): void {
     this.selectedTab = tab.tabName;
     this.navigatePage(tab);
   }
 
+  /**
+   * The function `navigatePage` navigates to a specified tab using the Angular router.
+   * @param {NavigationTab} tab - The `tab` parameter is of type `NavigationTab`, which likely contains
+   * information about a specific tab in a navigation menu. It seems to have a property `tabPathUrl`
+   * that holds the URL path associated with that tab.
+   */
   private navigatePage(tab: NavigationTab): void {
     this.router.navigate([tab.tabPathUrl]);
   }
 
+  /**
+   * The `loadSelectedTab` function subscribes to router events and selects the appropriate navigation
+   * tab based on the current URL.
+   */
   private loadSelectedTab(): void {
     this.pathObserveSubs = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -72,6 +88,10 @@ export class NavigationComponent implements OnDestroy, OnChanges {
       });
   }
 
+  /**
+   * The function `loadCurrentSelectedTabOnRefresh` determines the current selected tab based on the
+   * URL path and updates the selected tab accordingly.
+   */
   private loadCurrentSelectedTabOnRefresh(): void {
     const currentTabUrl: string = globalThis.location.pathname;
     const currentTabName: string = this.navigationTabs.find(tab => {
