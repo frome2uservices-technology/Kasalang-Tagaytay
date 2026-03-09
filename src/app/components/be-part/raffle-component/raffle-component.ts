@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CmsService } from '../../../core/cms-service';
+import { CmsService } from '../../../core/services/cms-service/cms-service';
 import { CmsRaffleComponents, CmsRaffleComponentsData, PrizeInfo } from '../../../models/be-part/cms-raffle-component.model';
 import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -39,7 +39,7 @@ export class RaffleComponent implements OnInit, OnDestroy {
    * CMS service if not already available.
    */
   private initializeCmsData(): void {
-    this.cmsData = this.cmsService.raffleComponent()?.data ?? null;
+    this.cmsData = this.cmsService.raffleCms()?.data ?? null;
     this.populatePrizesData(this.cmsData);
 
     if (this.cmsData === null) {
@@ -50,7 +50,7 @@ export class RaffleComponent implements OnInit, OnDestroy {
         .subscribe(response => {
           if (response) {
             this.isLoading = false;
-            this.cmsService.raffleComponent.set(response);
+            this.cmsService.raffleCms.set(response);
             this.cmsData = response.data;
             this.populatePrizesData(response.data);
           }

@@ -4,10 +4,11 @@ import { NavigationEnd, Router } from '@angular/router';
 import { NavigationTab } from '../../../models/header/navigation-tab.model';
 import { filter, Subscription } from 'rxjs';
 import { CmsHeaderComponentsData } from '../../../models/header/cms-header-components.model';
-import { MatSidenavModule} from '@angular/material/sidenav';
+import { MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderAccountComponent } from '../../account/header-account-component/header-account-component';
+import { UrlPages } from '../../../shared/constants/page-urls.constants';
 
 @Component({
   selector: 'app-navigation-component',
@@ -25,6 +26,7 @@ export class NavigationComponent implements OnDestroy, OnInit {
 
   @Input() public cmsData: CmsHeaderComponentsData | null = null;
   @Input() public countdownNotice: string = '';
+  @ViewChild('drawer') private readonly navDrawer!: MatDrawer;
 
   // SUBSCRIPTIONS
   private pathObserveSubs: Subscription = new Subscription();
@@ -79,11 +81,15 @@ export class NavigationComponent implements OnDestroy, OnInit {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
         const currentTabSelected: NavigationTab | null = this.navigationTabs?.find(option => option.tabPathUrl.includes(event.url)) ?? null;
+
         if (currentTabSelected) {
           this.selectTab(currentTabSelected);
         }
         else {
-          this.selectTab(this.navigationTabs[0]);
+          const isMyReservation: boolean = event.url.includes(UrlPages.MY_RESERVATION);
+          if (!isMyReservation) {
+            this.selectTab(this.navigationTabs[0]);
+          }
         }
       });
   }
@@ -93,17 +99,36 @@ export class NavigationComponent implements OnDestroy, OnInit {
    * URL path and updates the selected tab accordingly.
    */
   private loadCurrentSelectedTabOnRefresh(): void {
-    const currentTabUrl: string = globalThis.location.pathname;
+    const currentUrl: string = globalThis.location.pathname;
     const currentTabName: string = this.navigationTabs.find(tab => {
       const currentTabPath: string = tab.tabPathUrl.split("/")[1];
-      return currentTabUrl.includes(currentTabPath) && currentTabPath !== '';
+      return currentUrl.includes(currentTabPath) && currentTabPath !== '';
     })?.tabName ?? '';
-    
+
+    if (currentUrl.includes('my-reservation')) {
+      return;
+    }
+
     if (currentTabName === '') {
       this.navigatePage(this.navigationTabs[0]);
       this.selectedTab = this.navigationTabs[0].tabName;
     } else {
       this.selectedTab = currentTabName;
+    }
+  }
+
+  /**
+   * The function `toggleDrawerFromChild` toggles the visibility of a menu drawer based on a boolean
+   * input.
+   * @param {boolean} shouldToggleDrawer - The parameter `shouldToggleDrawer` is a boolean value that
+   * indicates whether the drawer should be toggled or not. If `shouldToggleDrawer` is `true`, the
+   * drawer will be toggled open or closed based on the current state.
+   */
+  public toggleDrawerFromChild(shouldToggleDrawer: boolean): void {
+    if (shouldToggleDrawer) {
+      this.selectedTab = this.navigationTabs[0].tabName;
+      this.showMenu = !this.showMenu;
+      this.navDrawer.toggle();
     }
   }
 }

@@ -1,0 +1,220 @@
+@use '@angular/material' as mat;
+@use 'index' as styles;
+
+.container {
+    margin-top: 100px;
+    margin-bottom: 120px;
+    position: relative;
+
+    .reservation {
+        display: flex;
+        flex-direction: column;
+        margin: 0 10% 0;
+
+        .notice {
+            text-align: center;
+            color: #505050;
+
+            .title {
+                font-size: 25px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-weight: 600;
+                color: styles.$dark-magenta-color;
+            }
+
+            .subtitle {
+                font-size: large;
+            }
+        }
+
+        .search {
+            display: flex;
+            flex-direction: column;
+            width: 300;
+            margin: 50px auto 0;
+
+            @include mat.form-field-overrides((
+                outlined-container-shape: 50px
+            ));
+
+            .submit-button {
+                display: flex;
+                margin: 0 auto 0;
+                width: 200px;
+                text-transform: uppercase;
+
+                @include mat.button-overrides((
+                    filled-ripple-color: styles.$dark-magenta-color
+
+                ));
+            }
+        }
+    }
+}
+
+.invoice{
+    margin-top: 80px;
+    box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.096);
+    border-radius: 30px;
+    padding: 50px;
+
+    .buttons {
+        display: flex;
+        justify-content: end;
+    }
+
+    .invoice-header {
+        text-align: center;
+
+        .invoice-title {
+            font-size: large;
+            letter-spacing: 8px;
+            font-weight: 500;
+            color: #505050be;
+            text-transform: uppercase;
+        }
+
+        .invoice-subtitle {
+            font-size: 52px;
+            letter-spacing: 2px;
+            margin-top: 43px;
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 60px;
+        }
+    }
+
+    .divider {
+        margin: 0 auto 0;
+        width: 230px;
+        height: 2px;
+        background-color: black;
+    }
+
+    .invoice-details {
+        margin-top: 80px;
+        margin-bottom: 150px;
+        display: flex;
+        justify-content: center;
+        gap: 10%;
+
+        .customer-info {
+            margin-right: auto;
+            width: 50%;
+
+            .info {
+                display: flex;
+                font-size: large;
+
+                .info-key {
+                    letter-spacing: 1px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    color: #505050;
+                    margin-right: auto;
+                }
+
+                .info-value {
+                    margin-left: auto;
+                }
+            }
+        }
+
+        .company-info {
+            width: 50%;
+            margin-right: auto;
+
+            .company-name {
+                font-size: 47px;
+                font-family: 'Times New Roman', Times, serif;
+                font-weight: 600;
+                color: darkmagenta;
+                line-height: 60px;
+            }
+
+            .info {
+                margin-bottom: 20px;
+                display: flex;
+
+                img {
+                    margin-right: 10px;
+                    width: 30px;
+                    height: 30px;
+                }
+
+                p {
+                    margin: auto 0 auto;
+                }
+            }
+        }
+    }
+
+    .table-divider {
+        height: 1px;
+        background-color: #505050;
+        width: 100%;
+    }
+
+    .suppliers {
+        width: 100%;
+        margin: 5px 0 20px;
+
+        table {
+            width: 100%;
+
+            th {
+                text-align: left;
+            }
+        }
+    }
+
+    .reservation-total {
+        display: flex;
+        justify-content: end;
+        font-size: large;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+
+        .total-key {
+            text-transform: uppercase;
+            margin-right: 20px;
+        }
+    }
+}
+
+@media (max-width: 1040px) {
+    .invoice {
+        .invoice-details {
+            display: flex;
+            flex-direction: column;
+
+            .customer-info {
+                width: 100%;
+                
+                .info {
+                    font-size: 14px;
+                }
+            }
+
+            .company-info {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .invoice {
+        .invoice-header {
+            .invoice-subtitle {
+                font-size: 38px;
+            }
+        }
+
+        .suppliers {
+            th, td {
+                font-size: 11px;
+            }
+        }
+    }
+}

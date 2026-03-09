@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationComponent } from '../navigation-component/navigation-component';
 import { HeaderAccountComponent } from '../../account/header-account-component/header-account-component';
 import { Router } from '@angular/router';
-import { CmsService } from '../../../core/cms-service';
+import { CmsService } from '../../../core/services/cms-service/cms-service';
 import { take } from 'rxjs';
 import { CmsHeaderComponentsData } from '../../../models/header/cms-header-components.model';
 import { CommonModule } from '@angular/common';
 import { LoaderComponent } from '../../shared/loader-component/loader-component';
+import { UrlPages } from '../../../shared/constants/page-urls.constants';
 
 @Component({
   selector: 'app-toolbar-component',
@@ -81,6 +82,6 @@ export class ToolbarComponent implements OnInit {
    * The navigateHomePage function in TypeScript navigates to the home page using the router.
    */
   public navigateHomePage(): void {
-    this.router.navigate(['/']);
+    this.router.navigate([`/${UrlPages.HOME}`]);
   }
 }

@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { RegisterFormComponent } from '../../account/register-form-component/register-form-component';
 import { MatDialog } from '@angular/material/dialog';
-import { CmsService } from '../../../core/cms-service';
+import { CmsService } from '../../../core/services/cms-service/cms-service';
 import { take } from 'rxjs';
 import { CmsExpoComponentsData } from '../../../models/home/cms-expo-components.model';
 import { LoaderComponent } from '../../shared/loader-component/loader-component';

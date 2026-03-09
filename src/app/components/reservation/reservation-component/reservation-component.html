@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="reservation">
+        <div class="notice">
+            <p class="title">{{ cmsData?.ReservationFindReservationTitle }}</p>
+            <p class="subtitle">{{ cmsData?.ReservationFindReservationSubtitle }}</p>
+        </div>
+
+        <form class="search" [formGroup]="myReservationForm" (ngSubmit)="submitReservation()">
+            <mat-form-field appearance="outline">
+                <mat-label>{{ cmsData?.ReservationSearchReservation }}</mat-label>
+                <input matInput placeholder="{{ cmsData?.ReservationEnterID }}" formControlName="reservation">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+
+            <button class="submit-button" matButton="filled" type="submit">{{ cmsData?.ReservationSearchButton }}</button>
+        </form>
+
+        @if (shouldShowInvoice) {
+            <ng-container [ngTemplateOutlet]="invoice"></ng-container>
+        }
+    </div>
+    <app-loader-component *ngIf="isLoading"></app-loader-component>
+</div>
+<app-recap-component></app-recap-component>
+
+
+<ng-template #invoice>
+    <div class="invoice">
+        <div class="buttons">
+            <button matIconButton (click)="shouldShowInvoice = !shouldShowInvoice">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <div class="invoice-header">
+            <p class="invoice-title">{{ cmsData?.ReservationInvoiceTitle }}</p>
+            <p class="invoice-subtitle">{{ cmsData?.ReservationInvoiceSubtitle }}</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="invoice-details">
+            <div class="customer-info">
+                <div class="info">
+                    <p class="info-key">{{ cmsData?.ReservationCustomerReservationID }}</p>
+                    <p class="info-value">KTQ12026001</p>
+                </div>
+                <div class="info">
+                    <p class="info-key">{{ cmsData?.ReservationCustomerReservationDate }}</p>
+                    <p class="info-value">March 01, 2026</p>
+                </div>
+                <div class="info">
+                    <p class="info-key">{{ cmsData?.REservationCustomerName }}</p>
+                    <p class="info-value">Andres, Ricco Rowell O.</p>
+                </div>
+            </div>
+
+            <div class="company-info">
+                <p class="company-name">{{ cmsData?.ReservationCompanyName }}</p>
+                <div class="info address">
+                    <img src="assets/images/icons/location.png" alt="">
+                    <p>{{ cmsData?.ReservationCompanyAddress }}</p>
+                </div>
+                <div class=" info contacts">
+                    <img src="assets/images/icons/phone.png" alt="">
+                    <p>{{ cmsData?.ReservationCompanyContact }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-divider"></div>
+        
+        <div class="suppliers">
+            <table>
+                <tr>
+                    <th>{{ cmsData?.ReservationTableSupplier }}</th>
+                    <th>{{ cmsData?.ReservationTableSupplierContact }}</th>
+                    <th>{{ cmsData?.ReservationTableService }}</th>
+                    <th>{{ cmsData?.ReservationTableAmount }}</th>
+                </tr>
+                <tr>
+                    <td>J's Diamond</td>
+                    <td>09685238569</td>
+                    <td>Diamond Ring</td>
+                    <td>Php. 97,000.00</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-divider"></div>
+
+        <div class="reservation-total">
+            <p class="total-key">{{ cmsData?.ReservationTotal }}</p>
+            <p class="total-value">Php. 97,000.00</p>
+        </div>
+    </div>
+</ng-template>

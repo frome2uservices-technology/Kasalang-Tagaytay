@@ -10,7 +10,8 @@
             "recapComponent": "/api/kt-web-recap",
             "faqComponent": "/api/kt-web-faq",
             "perksComponent": "/api/kt-web-perk",
-            "raffleComponent": "/api/kt-web-raffle"
+            "raffleComponent": "/api/kt-web-raffle",
+            "reservationComponent": "/api/kt-web-reservation"
         }
     }
 }

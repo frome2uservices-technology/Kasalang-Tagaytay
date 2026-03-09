@@ -32,7 +32,7 @@
 
                 <div class="divider"></div>
 
-                <app-header-account-component [cmsData]="cmsData"></app-header-account-component>
+                <app-header-account-component [cmsData]="cmsData" (toggleDrawer)="toggleDrawerFromChild($event)"></app-header-account-component>
 
                 <div class="countdown">
                     Countdown Until Expo<br>{{ countdownNotice }}

@@ -1,14 +1,15 @@
 <div class="container">
     <div class="row">
-        <div 
+        <button
+        matButton 
         class="register"
         (click)="openForm()">
             <mat-icon>library_add</mat-icon>
             {{ cmsData?.HeaderRegisterNowLabel }}
-        </div>
+        </button>
 
         <div class="booking-look-up">
-            <button matButton="outlined">
+            <button matButton="outlined" (click)="navigateToMyReservation()">
                 <mat-icon>search</mat-icon>
                 {{ cmsData?.HeaderMyReservationLabel }}
             </button>

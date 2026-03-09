@@ -17,4 +17,5 @@ interface CmsComponentURLConfig {
     faqComponent: string;
     perksComponent: string;
     raffleComponent: string;
+    reservationComponent: string;
 }

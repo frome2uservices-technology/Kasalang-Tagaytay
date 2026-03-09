@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CmsService } from '../../../core/cms-service';
+import { CmsService } from '../../../core/services/cms-service/cms-service';
 import { CmsPerksComponentsData, PerkInfo } from '../../../models/be-part/cms-perks-component.model';
 import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -47,7 +47,7 @@ export class PerksComponent implements OnInit, OnDestroy {
    * perks data, and fetches the data if it is not already available.
    */
   private intializeCmsData(): void {
-    this.cmsData = this.cmsService.perksComponent()?.data ?? null;
+    this.cmsData = this.cmsService.perksCms()?.data ?? null;
     this.populatePerksData(this.cmsData);
 
     if (this.cmsData === null) {
@@ -59,7 +59,7 @@ export class PerksComponent implements OnInit, OnDestroy {
           if (response) {
             this.isLoading = false;
             this.cmsData = response.data;
-            this.cmsService.perksComponent.set(response);
+            this.cmsService.perksCms.set(response);
             this.populatePerksData(response.data);
           }
         });

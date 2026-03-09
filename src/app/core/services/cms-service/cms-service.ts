@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal, WritableSignal } from '@angular/core';
-import { AppConfigService } from './config.service';
+import { AppConfigService } from '../config-service/config.service';
 import { Observable, tap } from 'rxjs';
-import { CmsHeaderComponents } from '../models/header/cms-header-components.model';
-import { CmsExpoComponents } from '../models/home/cms-expo-components.model';
-import { CmsExperienceComponents } from '../models/about/cms-experience-component.model';
-import { CmsRecapComponents } from '../models/home/cms-recap-components.model';
-import { CmsFaqComponents } from '../models/faq/cms-faq-component.model';
-import { CmsPerksComponents } from '../models/be-part/cms-perks-component.model';
-import { CmsRaffleComponents } from '../models/be-part/cms-raffle-component.model';
+import { CmsHeaderComponents } from '../../../models/header/cms-header-components.model';
+import { CmsExpoComponents } from '../../../models/home/cms-expo-components.model';
+import { CmsExperienceComponents } from '../../../models/about/cms-experience-component.model';
+import { CmsRecapComponents } from '../../../models/home/cms-recap-components.model';
+import { CmsFaqComponents } from '../../../models/faq/cms-faq-component.model';
+import { CmsPerksComponents } from '../../../models/be-part/cms-perks-component.model';
+import { CmsRaffleComponents } from '../../../models/be-part/cms-raffle-component.model';
+import { CmsReservationComponents } from '../../../models/reservation/cms-reservation-components.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,7 @@ export class CmsService {
   private readonly cmsFaqComponentURL: string = '';
   private readonly cmsPerksComponentURL: string = '';
   private readonly cmsRaffleComponentURL: string = '';
+  private readonly cmsReservationComponentURL: string = '';
 
   // SIGNALS
   public headerCms: WritableSignal<CmsHeaderComponents | null> = signal<CmsHeaderComponents | null>(null);
@@ -31,8 +33,9 @@ export class CmsService {
   public experienceCms: WritableSignal<CmsExperienceComponents | null> = signal<CmsExperienceComponents | null>(null);
   public recapCms: WritableSignal<CmsRecapComponents | null> = signal<CmsRecapComponents | null>(null);
   public faqCms: WritableSignal<CmsFaqComponents | null> = signal<CmsFaqComponents | null>(null);
-  public perksComponent: WritableSignal<CmsPerksComponents | null> = signal<CmsPerksComponents | null>(null);
-  public raffleComponent: WritableSignal<CmsRaffleComponents | null> = signal<CmsRaffleComponents | null>(null);
+  public perksCms: WritableSignal<CmsPerksComponents | null> = signal<CmsPerksComponents | null>(null);
+  public raffleCms: WritableSignal<CmsRaffleComponents | null> = signal<CmsRaffleComponents | null>(null);
+  public reservationCms: WritableSignal<CmsReservationComponents | null> = signal<CmsReservationComponents | null>(null);
 
   constructor(
     private readonly config: AppConfigService,
@@ -46,6 +49,7 @@ export class CmsService {
     this.cmsFaqComponentURL = `${this.cmsBaseURL}${this.config.cmsServiceConfig.componentURL.faqComponent}`;
     this.cmsPerksComponentURL = `${this.cmsBaseURL}${this.config.cmsServiceConfig.componentURL.perksComponent}`;
     this.cmsRaffleComponentURL = `${this.cmsBaseURL}${this.config.cmsServiceConfig.componentURL.raffleComponent}`;
+    this.cmsReservationComponentURL = `${this.cmsBaseURL}${this.config.cmsServiceConfig.componentURL.reservationComponent}`;
   }
   
   public getCmsHeaderComponents(): Observable<CmsHeaderComponents> {
@@ -74,5 +78,9 @@ export class CmsService {
 
   public getCmsRaffleComponents(): Observable<CmsRaffleComponents> {
     return this.http.get<CmsRaffleComponents>(`${this.cmsRaffleComponentURL}`);
+  }
+
+  public getCmsReservationComponents(): Observable<CmsReservationComponents> {
+    return this.http.get<CmsReservationComponents>(`${this.cmsReservationComponentURL}`);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, signal, WritableSignal } from '@angular/core';
-import { CmsService } from '../../../core/cms-service';
+import { CmsService } from '../../../core/services/cms-service/cms-service';
 import { take } from 'rxjs';
 import { CmsFaqComponentsData, FaqContent } from '../../../models/faq/cms-faq-component.model';
 import { CommonModule } from '@angular/common';

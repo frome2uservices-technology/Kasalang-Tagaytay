@@ -5,10 +5,11 @@ import { PreviousEvents } from '../../../models/home/previous-events.model';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { CmsRecapComponentsData } from '../../../models/home/cms-recap-components.model';
-import { CmsService } from '../../../core/cms-service';
+import { CmsService } from '../../../core/services/cms-service/cms-service';
 import { take } from 'rxjs/internal/operators/take';
 import { MatButtonModule } from '@angular/material/button';
 import { LoaderComponent } from '../../shared/loader-component/loader-component';
+import { UrlPages } from '../../../shared/constants/page-urls.constants';
 
 @Component({
   selector: 'app-recap-component',
@@ -82,6 +83,6 @@ export class RecapComponent implements OnInit, OnDestroy {
    * The function `redirectToSupplierPage` navigates to the suppliers page using the Angular router.
    */
   public redirectToSupplierPage(): void {
-    this.router.navigate(['/suppliers']);
+    this.router.navigate([`/${UrlPages.SUPPLIERS}`]);
   }
 }

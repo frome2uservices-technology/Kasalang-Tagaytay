@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { ToolbarComponent } from './components/header/toolbar-component/toolbar-component';
 import { FooterComponent } from './components/footer/footer-component/footer-component';
 import { RouteFadeAnimation } from './animations/route-animation';
-import { AppConfigService } from './core/config.service';
+import { AppConfigService } from './core/services/config-service/config.service';
 import { CommonModule } from '@angular/common';
 import { MaintenanceComponent } from './components/maintenance-component/maintenance-component';
 @Component({

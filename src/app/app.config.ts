@@ -4,7 +4,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-import { AppConfigService } from './core/config.service';
+import { AppConfigService } from './core/services/config-service/config.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [

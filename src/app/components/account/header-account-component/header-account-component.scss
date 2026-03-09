@@ -16,6 +16,10 @@
             cursor: pointer;
             color: #414141;
             text-transform: uppercase;
+
+            @include mat.button-overrides((
+                text-state-layer-color: none
+            ));
         }
 
         .register:hover {
